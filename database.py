@@ -8,7 +8,7 @@ class Database:
             dbname="student",
             port=5432,
             user="postgres",
-            password="your password"
+            password="your password()"
         )
         self.cursor=self.connection.cursor()
         

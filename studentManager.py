@@ -8,17 +8,36 @@ class StudentManager:
     def add_student(self):
         print("Your are inserting student in the list.\n")
         student_id=input("Enter student id: ")
-        name=input("Enter student name: ")
+        while True:
+            name=input("Enter student name: ")
+            if name.strip()!="" and name.replace(" ","").isalpha():
+                break
+            else:
+                print("\nName cannot be empty and only contain alphabet\n")
         while True:
             try:
                 age=int(input("Enter student age: "))
                 break
             except ValueError:
                 print("\nPlease enter valid age.\n")
-                
-        gender=input("Enter gender: ")
-        department=input("Enter department: ")
-        email=input("Enter student email: ")
+        while True:        
+            gender=input("Enter gender: ")
+            if gender.lower()=="male"or gender.lower()=="female":
+                break
+            else:
+                print("\nGender must be Male or Female.\n")
+        while True:
+            department=input("Enter department: ")
+            if department.isalpha() and department!="":
+                break
+            else:
+                print("\nEnter a valid department.\n")
+        while True:
+            email=input("Enter student email: ")
+            if "@gmail.com" in email:
+                break
+            else:
+                print("\nEnter a valid email.\n")
         while True:
             try:
                 cgpa=float(input("Enter student cgpa: "))
@@ -80,7 +99,12 @@ class StudentManager:
                         student_id=input("Enter new student id: ")
                         student.student_id=student_id
                     elif choice=='2':
-                        name=input("Enter new name: ")
+                        while True:
+                            name=input("Enter new name: ")
+                            if name.strip()!="" and name.replace(" ","").isalpha():
+                                break
+                            else:
+                                print("\nName cannot be empty and only contain alphabet\n")
                         student.name=name
                     elif choice=='3':
                         while True:
@@ -91,13 +115,28 @@ class StudentManager:
                                 print("\nPlease enter valid age.\n")
                         student.age=age
                     elif choice=='4':
-                        gender=input("Updated gender: ")
+                        while True:        
+                            gender=input("Updated gender: ")
+                            if gender.lower()=="male"or gender.lower()=="female":
+                                break
+                            else:
+                                print("\nGender must be Male or Female.\n")
                         student.gender=gender
                     elif choice=='5':
-                        department=input("Enter department: ")
+                        while True:
+                            department=input("Enter department: ")
+                            if department.isalpha() and department!="":
+                                break
+                            else:
+                                print("\nEnter a valid department.\n")
                         student.department=department
                     elif choice=='6':
-                        email=input("Enter updated email: ")
+                        while True:
+                            email=input("Enter student email: ")
+                            if "@gmail.com" in email:
+                                break
+                            else:
+                                print("\nEnter a valid email.\n")
                         student.email=email
                     elif choice=='7':
                         while True:
