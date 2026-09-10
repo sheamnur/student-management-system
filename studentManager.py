@@ -9,11 +9,26 @@ class StudentManager:
         print("Your are inserting student in the list.\n")
         student_id=input("Enter student id: ")
         name=input("Enter student name: ")
-        age=int(input("Enter student age: "))
+        while True:
+            try:
+                age=int(input("Enter student age: "))
+                break
+            except ValueError:
+                print("\nPlease enter valid age.\n")
+                
         gender=input("Enter gender: ")
         department=input("Enter department: ")
         email=input("Enter student email: ")
-        cgpa=float(input("Enter student cgpa: "))
+        while True:
+            try:
+                cgpa=float(input("Enter student cgpa: "))
+                if cgpa>=0 and cgpa<=4:
+                    break
+                else:
+                    print("Cgpa must be between 0 to 4.")
+                    continue
+            except ValueError:
+                print("\nEnter Valid cgpa.\n")
         student=Student(student_id,name,age,gender,department,email,cgpa)
         self.database.save_student(student)
 
@@ -68,7 +83,12 @@ class StudentManager:
                         name=input("Enter new name: ")
                         student.name=name
                     elif choice=='3':
-                        age=int(input("Enter updated age: "))
+                        while True:
+                            try:
+                                age=int(input("Enter updated age: "))
+                                break
+                            except ValueError:
+                                print("\nPlease enter valid age.\n")
                         student.age=age
                     elif choice=='4':
                         gender=input("Updated gender: ")
@@ -80,7 +100,16 @@ class StudentManager:
                         email=input("Enter updated email: ")
                         student.email=email
                     elif choice=='7':
-                        cgpa=float(input("Enter updated cgpa: "))
+                        while True:
+                            try:
+                                cgpa=float(input("Enter updated cgpa: "))
+                                if cgpa>=0 and cgpa<=4:
+                                    break
+                                else:
+                                    print("Cgpa must be between 0 to 4.")
+                                    continue
+                            except ValueError:
+                                print("\nEnter Valid cgpa.\n")
                         student.cgpa=cgpa
                     
                     else:
