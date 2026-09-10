@@ -6,6 +6,7 @@ class StudentManager:
 
 
     def add_student(self):
+        print("Your are inserting student in the list.\n")
         student_id=input("Enter student id: ")
         name=input("Enter student name: ")
         age=int(input("Enter student age: "))
@@ -26,32 +27,40 @@ class StudentManager:
 
 
     def search_student(self):
+        print("Start searching.\n")
         students=self.database.get_student()
+        if not students:
+            print("\nNo student in the list.")
+            return
         student_id=input("Enter student id: ")
         for student in students:
             if student.student_id==student_id:
                 print(student)
                 return
-        print("Student not found!")
+        print("\nStudent not found!")
 
 
 
     def update_student(self):
+        print("You are updating student information.\n")
         students=self.database.get_student()
+        if not students:
+            print("\nStudent list are empty.")
+            return
         student_id=input("Enter student id: ")
         old_id=student_id
         for student in students:
             if student.student_id==student_id:
                 while True:
-                    print("1.Update id " \
-                    "2.Update Name " \
-                    "3.Update age " \
-                    "4.Update gender " \
-                    "5.Update department " \
-                    "6.Update email " \
-                    "7.Update cgpa " \
+                    print("1.Update id   " \
+                    "2.Update Name\n" \
+                    "3.Update age   " \
+                    "4.Update gender\n" \
+                    "5.Update department   " \
+                    "6.Update email\n" \
+                    "7.Update cgpa   " \
                     "Anything else to discard\n ")
-                    choice=input("Enter your choice: ")
+                    choice=input("Enter your choice for update: ")
                     if choice=='1':
                         student_id=input("Enter new student id: ")
                         student.student_id=student_id
@@ -77,10 +86,22 @@ class StudentManager:
                     else:
                         break
                 self.database.update_student(student,old_id)
+                return
+        print("\nStudent not found.")
 
 
 
 
     def delete_student(self):
-        pass
+        print("Your are deleting student.\n")
+        students=self.database.get_student()
+        if not students:
+            print("Student list are empty.")
+            return
+        student_id=input("Enter student id for delete student info: ")
+        for student in students:
+            if student.student_id==student_id:
+                self.database.delete_student(student_id)
+                return
+        print("\nStudent Not found.")
 

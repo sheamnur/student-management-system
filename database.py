@@ -19,10 +19,12 @@ class Database:
                                             student.gender,student.department,student.email,student.cgpa,student.age)
         )
         self.connection.commit()
+        print("\nStudent successfully added.")
 
     def get_student(self):
         self.cursor.execute(
-            "select * from students "
+            "select * from students " \
+            "order by student_id"
         )
         students=[]
         rows=self.cursor.fetchall()
@@ -48,6 +50,16 @@ class Database:
 
         )
         self.connection.commit()
+        print("\nStudent information update successfully")
+
+    def delete_student(self,student_id):
+        self.cursor.execute(
+            "delete from students " \
+            "where student_id=%s",
+            (student_id,)
+        )
+        self.connection.commit()
+        print("\nStudent delete successfully.")
 
     
         
