@@ -8,7 +8,7 @@ class Database:
             dbname="student",
             port=5432,
             user="postgres",
-            password="your password()"
+            password="Your passward"
         )
         self.cursor=self.connection.cursor()
         
@@ -22,10 +22,11 @@ class Database:
                                                 student.gender,student.department,student.email,student.cgpa,student.age)
             )
             self.connection.commit()
-            print("\nStudent successfully added.")
+            return True
         except errors.UniqueViolation:
             self.connection.rollback()
             print("\nStudent id already exists.\n")
+            return False
         except errors.NotNullViolation:
             self.connection.rollback()
             print("\nRequired field cannot be empty.\n")
